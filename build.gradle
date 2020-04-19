@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+    id 'com.diffplug.gradle.spotless' version '3.27.2'
+    id 'net.ltgt.errorprone' version '1.1.1'
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.github.javaparser:javaparser-core:3.15.18'
+    errorprone('com.google.errorprone:error_prone_core:2.3.4')
+    errorproneJavac('com.google.errorprone:javac:9+181-r4173-1')
+}
+
+application {
+    mainClassName = 'demo.Main'
+}
+
+shadowJar {
+}
+
+spotless {
+    java {
+        googleJavaFormat().aosp()
+    }
+}
